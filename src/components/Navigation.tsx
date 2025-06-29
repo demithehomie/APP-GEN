@@ -1,13 +1,12 @@
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { useTheme } from '@/hooks/useTheme';
 import { Button } from '@/components/ui/button';
 import { LogOut } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const Navigation = () => {
   const { currentUser, logout } = useAuth();
-  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -16,21 +15,6 @@ const Navigation = () => {
       navigate('/login');
     } catch (error) {
       console.error('Erro ao fazer logout:', error);
-    }
-  };
-
-  const toggleTheme = () => {
-    const themes: Array<'light' | 'dark' | 'system'> = ['light', 'dark', 'system'];
-    const currentIndex = themes.indexOf(theme);
-    const nextTheme = themes[(currentIndex + 1) % themes.length];
-    setTheme(nextTheme);
-  };
-
-  const getThemeIcon = () => {
-    switch (theme) {
-      case 'light': return '☀️';
-      case 'dark': return '🌙';
-      default: return '💻';
     }
   };
 
@@ -65,15 +49,7 @@ const Navigation = () => {
               {currentUser.email}
             </span>
             
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleTheme}
-              className="text-lg"
-              title={`Tema atual: ${theme}`}
-            >
-              {getThemeIcon()}
-            </Button>
+            <ThemeToggle />
             
             <Button
               variant="outline"

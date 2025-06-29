@@ -5,36 +5,48 @@ export type Theme = 'light' | 'dark' | 'system';
 
 export const useTheme = () => {
   const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('theme') as Theme;
-    return saved || 'system';
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme') as Theme;
+      return saved || 'system';
+    }
+    return 'system';
   });
 
   useEffect(() => {
     const root = window.document.documentElement;
     
-    const applyTheme = (newTheme: Theme) => {
-      if (newTheme === 'system') {
+    const applyTheme = (currentTheme: Theme) => {
+      // Remove existing theme classes
+      root.classList.remove('light', 'dark');
+      
+      if (currentTheme === 'system') {
         const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        root.classList.toggle('dark', systemTheme === 'dark');
+        root.classList.add(systemTheme);
+        console.log('Applied system theme:', systemTheme);
       } else {
-        root.classList.toggle('dark', newTheme === 'dark');
+        root.classList.add(currentTheme);
+        console.log('Applied theme:', currentTheme);
       }
     };
 
     applyTheme(theme);
-    localStorage.setItem('theme', theme);
+    
+    // Save theme to localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', theme);
+    }
 
     // Listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = () => {
+    const handleSystemThemeChange = () => {
       if (theme === 'system') {
         applyTheme('system');
       }
     };
 
-    mediaQuery.addEventListener('change', handleChange);
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
     
-    return () => mediaQuery.removeEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleSystemThemeChange);
   }, [theme]);
 
   return { theme, setTheme };
