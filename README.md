@@ -1,73 +1,191 @@
-# Welcome to your Lovable project
 
-## Project info
+# ParticipantePal - Sistema de Gerenciamento de Participantes
 
-**URL**: https://lovable.dev/projects/2b5dc292-9527-43b6-a58f-b1b5e52171e5
+Um sistema moderno e responsivo para gerenciar participantes e suas notas, desenvolvido com React, TypeScript, Tailwind CSS e Firebase Authentication.
 
-## How can I edit this code?
+## 🚀 Funcionalidades
 
-There are several ways of editing your application.
+- ✅ **Autenticação Firebase** - Login seguro com email/senha
+- ✅ **CRUD Completo** - Criar, listar, editar e excluir participantes
+- ✅ **Cálculo Automático** - Média calculada automaticamente das notas
+- ✅ **Tema Claro/Escuro** - Alternância de tema com suporte ao sistema
+- ✅ **Persistência Local** - Dados salvos no LocalStorage
+- ✅ **Design Responsivo** - Interface adaptável para mobile e desktop
+- ✅ **Validação de Formulários** - Validação em tempo real
+- ✅ **Feedback Visual** - Toasts e indicadores de carregamento
 
-**Use Lovable**
+## 🛠️ Tecnologias Utilizadas
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2b5dc292-9527-43b6-a58f-b1b5e52171e5) and start prompting.
+- **Frontend**: React 18 + TypeScript + Vite
+- **Styling**: Tailwind CSS + Shadcn/UI
+- **Estado**: Zustand + Context API
+- **Autenticação**: Firebase Auth (simulado para demo)
+- **Roteamento**: React Router Dom
+- **Persistência**: LocalStorage
+- **Icons**: Lucide React
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📦 Instalação e Setup
 
-**Use your preferred IDE**
+### 1. Clone e instale dependências
+```bash
+git clone <seu-repositorio>
+cd participant-pal-web-app
+npm install
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 2. Configuração do Firebase (Opcional)
+Para usar Firebase real, edite o arquivo `src/lib/firebase.ts` e substitua a configuração de teste pelas suas credenciais do Firebase:
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```typescript
+const firebaseConfig = {
+  apiKey: "sua-api-key",
+  authDomain: "seu-projeto.firebaseapp.com",
+  projectId: "seu-projeto-id",
+  storageBucket: "seu-projeto.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "sua-app-id"
+};
+```
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 3. Execute o projeto
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+O projeto estará disponível em: `http://localhost:8080`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🔐 Credenciais de Teste
 
-**Use GitHub Codespaces**
+Para acessar o sistema, use as seguintes credenciais:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- **Email**: `testuser@empresa.com`
+- **Senha**: `Teste@1234`
 
-## What technologies are used for this project?
+## 📋 Como Usar
 
-This project is built with:
+### 1. Login
+- Acesse a página inicial
+- Use as credenciais de teste ou clique em "Preencher credenciais de teste"
+- Faça login para acessar o sistema
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### 2. Gerenciar Participantes
+- **Listar**: Visualize todos os participantes na página principal
+- **Adicionar**: Clique em "Adicionar Participante" ou use o menu de navegação
+- **Editar**: Clique no ícone de edição na linha do participante
+- **Excluir**: Clique no ícone de lixeira (confirmação necessária)
 
-## How can I deploy this project?
+### 3. Formulários
+- **Nome**: Campo obrigatório (texto livre)
+- **Idade**: Número entre 1 e 120 anos
+- **Notas**: Valores decimais entre 0.0 e 10.0
+- **Média**: Calculada automaticamente (Nota1 + Nota2) / 2
 
-Simply open [Lovable](https://lovable.dev/projects/2b5dc292-9527-43b6-a58f-b1b5e52171e5) and click on Share -> Publish.
+### 4. Tema
+- Use o botão no canto superior direito para alternar entre:
+  - ☀️ Claro
+  - 🌙 Escuro  
+  - 💻 Sistema (segue preferência do SO)
 
-## Can I connect a custom domain to my Lovable project?
+## 📊 Dados de Exemplo
 
-Yes, you can!
+O sistema vem pré-carregado com 3 participantes de exemplo:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. **Ana Silva Santos** (25 anos) - Notas: 8.5, 9.0 → Média: 8.8
+2. **João Pedro Oliveira** (30 anos) - Notas: 7.5, 8.5 → Média: 8.0
+3. **Maria Fernanda Costa** (28 anos) - Notas: 9.0, 9.5 → Média: 9.3
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🎨 Interface
+
+### Cores das Médias
+- 🟢 **Verde**: Média ≥ 9.0 (Excelente)
+- 🟡 **Amarelo**: Média ≥ 7.0 (Bom)
+- 🔴 **Vermelho**: Média < 7.0 (Precisa melhorar)
+
+### Layout Responsivo
+- **Desktop**: Tabela completa com todas as colunas
+- **Mobile**: Layout adaptado com informações essenciais
+- **Navegação**: Menu responsivo com collapse em telas pequenas
+
+## 🔄 Persistência de Dados
+
+Os dados são armazenados no **LocalStorage** do navegador:
+- **Chave**: `participants` - Lista de todos os participantes
+- **Chave**: `mockUser` - Dados do usuário logado
+- **Chave**: `theme` - Preferência de tema
+
+### Backup e Restauração
+Para fazer backup dos dados:
+1. Abra o DevTools (F12)
+2. Vá para Application/Storage → LocalStorage
+3. Copie o valor da chave `participants`
+
+Para restaurar:
+1. Cole o JSON no LocalStorage com a chave `participants`
+2. Recarregue a página
+
+## 🚧 Comandos Disponíveis
+
+```bash
+# Desenvolvimento
+npm run dev          # Inicia servidor de desenvolvimento
+
+# Build
+npm run build        # Gera build de produção
+npm run preview      # Preview do build
+
+# Code Quality
+npm run lint         # Executa ESLint
+```
+
+## 🔧 Estrutura do Projeto
+
+```
+src/
+├── components/          # Componentes reutilizáveis
+│   ├── ui/             # Componentes Shadcn/UI (read-only)
+│   ├── Navigation.tsx   # Barra de navegação
+│   ├── ParticipantForm.tsx # Formulário de participante
+│   └── ProtectedRoute.tsx  # Proteção de rotas
+├── contexts/           # Contextos React
+│   └── AuthContext.tsx # Contexto de autenticação
+├── hooks/              # Hooks customizados
+│   ├── useTheme.ts     # Hook de tema
+│   └── use-toast.ts    # Hook de toast (Shadcn)
+├── lib/                # Configurações e utilitários
+│   ├── firebase.ts     # Configuração Firebase
+│   └── utils.ts        # Utilitários gerais
+├── pages/              # Páginas da aplicação
+│   ├── Login.tsx       # Página de login
+│   ├── Participants.tsx # Lista de participantes
+│   ├── NewParticipant.tsx # Novo participante
+│   ├── EditParticipant.tsx # Editar participante
+│   └── NotFound.tsx    # Página 404
+├── store/              # Estado global
+│   └── participantsStore.ts # Store Zustand
+└── main.tsx           # Ponto de entrada
+```
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
+## 🆘 Suporte
+
+Se você encontrar problemas ou tiver dúvidas:
+
+1. Verifique se todas as dependências foram instaladas: `npm install`
+2. Limpe o cache do navegador e LocalStorage se necessário
+3. Verifique o console do navegador para erros
+4. Certifique-se de estar usando as credenciais de teste corretas
+
+---
+
+**Desenvolvido com ❤️ usando React + TypeScript + Tailwind CSS**
