@@ -26,7 +26,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-8">
             <Link to="/participants" className="text-xl font-bold text-primary">
-              ParticipantePal
+              GenPlatform
             </Link>
             <div className="hidden md:flex space-x-4">
               <Link 

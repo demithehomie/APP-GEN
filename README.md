@@ -1,5 +1,5 @@
 
-# ParticipantePal - Sistema de Gerenciamento de Participantes
+# GenPlatform - Sistema de Gerenciamento de Participantes
 
 Um sistema moderno e responsivo para gerenciar participantes e suas notas, desenvolvido com React, TypeScript, Tailwind CSS e Firebase Authentication.
 
